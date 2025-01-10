@@ -3,7 +3,7 @@ import config
 
 info_dict = dict()
 
-
+#for deleting flies in sql
 def delete_fly(id):
     conn = mysql.connector.connect(**config.config)
     curs = conn.cursor(dictionary=True)
@@ -15,7 +15,7 @@ def delete_fly(id):
     conn.close()
     print('deleted')
 
-
+#for editing flies in sql
 def Edit_fly(am, col , Id ):
     my_Database = ['Model_vehicle' , 'class_vehicle' , 'company_name' , 'plane_name' , 'sarneshinan']
     conn = mysql.connector.connect(**config.config)
@@ -62,7 +62,7 @@ def Edit_fly(am, col , Id ):
         curs.close()
         conn.close()
 
-
+#for returning flies form table in sql
 def get_from_vehicle(x , y , z):
     lst_Id = [1 , 2 , 3]
     conn = mysql.connector.connect(**config.config)
@@ -90,7 +90,7 @@ def get_from_vehicle(x , y , z):
     
 
 
-
+#for inserting into customer (table) in sql
 def insert_into_customer(cid , name , lname , phone):
     conn = mysql.connector.connect(**config.config)
     curs = conn.cursor(dictionary=True)
@@ -114,7 +114,7 @@ def get_id_from_vehicle():
     return True
 
 
-
+#for returning informations from customer table
 def get_from_customer(cid):
     conn = mysql.connector.connect(**config.config)
     curs = conn.cursor(dictionary=True)
@@ -134,7 +134,7 @@ def get_from_customer(cid):
     return f"cid : {cid} \nname : {name} \nlast name : {last_name} \nphone : {phone} \nbuy a ticket : /buy"
 
 
-
+#for deleting acount
 def delete_from_customer(cid):
     conn = mysql.connector.connect(**config.config)
     curs = conn.cursor(dictionary=True)
@@ -157,7 +157,7 @@ def get_cid_from_customer(cid):
     curs.close()
     conn.close()
 
-
+#runing
 if __name__ == "__main__":
     # print(get_from_customer(6728418988))
     # print(get_from_vehicle('yes' , y= 2))
