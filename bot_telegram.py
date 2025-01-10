@@ -14,7 +14,7 @@ from DQL import delete_fly , Edit_fly , get_from_vehicle , insert_into_customer 
 log.critical('Importing ...')
 
 
-API_TOKEN = '7033504713:AAHI1OGir0r7n8iNKXqD5yq_bkjDlxT1K2I'
+API_TOKEN = 'Your token'
 
 
 bot = telebot.TeleBot(API_TOKEN)
