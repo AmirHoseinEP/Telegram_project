@@ -2,7 +2,7 @@ import mysql.connector as msc
 import config
 from DML import *
 
-
+#for creating databse in sql
 try :
     def Create_Database_amirhosein_ticket():
         conn = msc.connect(user = 'root' , password = 'password' , host = 'localhost')
@@ -15,7 +15,7 @@ try :
         conn.close()
         print(f'Data base amirhosein_ticket created')
 
-
+#for creating customer table
     def Create_Table_Customer():
         conn = msc.connect(user = 'root' , password = 'password' , host = 'localhost' , database = 'amirhosein_ticket')
         curs = conn.cursor()
@@ -35,7 +35,7 @@ try :
 
 
 
-
+#for creating vehicle table
     def Create_Table_vehicle():
         conn = msc.connect(user = 'root' , password = 'password' , host = 'localhost' , database = 'amirhosein_ticket')
         curs = conn.cursor()
@@ -54,7 +54,7 @@ try :
         conn.close()
         print(f'table vehicle created')
 
-
+#for creating ticket table
     def Create_Table_ticket():
         conn = msc.connect(user = 'root' , password = 'password' , host = 'localhost' , database = 'amirhosein_ticket')
         curs = conn.cursor()
@@ -70,14 +70,14 @@ try :
         conn.close()
         print(f'table ticket created')
 
-
+#running
     if __name__=='__main__':
         Create_Database_amirhosein_ticket()
         Create_Table_Customer()
         Create_Table_vehicle()
         Create_Table_ticket()
         print('End')
-    
+    # default values
     Insert_to_vehicle('plane' , 'vip' , 'mahan' , 'Boeing 747' , 250)
     Insert_to_vehicle('plane' , 'economy' , 'Iran air' , 'Boeing 747' , 450)
     
