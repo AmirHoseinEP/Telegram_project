@@ -2,8 +2,10 @@ import logging as log
 
 version = '1.22.0'
 log.basicConfig(filename='project.log' , filemode='w' , format=f'%(levelname)s - %(asctime)s - %(processName)s - {version} : %(message)s ')
+#logging
 
 log.critical('Starting ...')
+#importing
 import telebot
 from telebot.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardMarkup, InlineKeyboardButton
 import streamlit as st
@@ -13,18 +15,19 @@ from DML import Insert_in_customer , Insert_to_vehicle , Insert_to_station , Ins
 from DQL import delete_fly , Edit_fly , get_from_vehicle , insert_into_customer , get_id_from_vehicle , get_from_customer , delete_from_customer 
 log.critical('Importing ...')
 
-
+#Token
 API_TOKEN = 'Your token'
 
 
 bot = telebot.TeleBot(API_TOKEN)
 hideboard = ReplyKeyboardRemove()
 
+#admins
 lst_name = []
 admins = [6728418988] 
 
 
-
+#cmmands
 command = {
     'start':'بات را شروع کنید',
     'buy':'خرید خود را آزاد کنید',
@@ -34,6 +37,7 @@ command = {
     'delete_acount':'اکانت خود را پاک کنید'
 }
 
+#admin commands
 admins_commands = {
     'add_fly':'پرواز قابل رزرو جدیدی را اضافه کنید ',
     'delete_fly':'پروازی را حذف کنید',
@@ -50,7 +54,7 @@ message_id_channel = {
 
 user_step = dict()
 
-
+#listener
 def listener(messages):   
     for m in messages:
         if m.content_type == 'text':
@@ -58,7 +62,7 @@ def listener(messages):
             
 bot.set_update_listener(listener)
 
-
+#/start
 @bot.message_handler(commands=['start'])
 def command_start_handler(message):
     cid = message.chat.id
@@ -66,7 +70,7 @@ def command_start_handler(message):
     log.critical('Starting bot ...')
     
     
-
+#/help
 @bot.message_handler(commands=['help'])
 def command_help_handeler(message):
     cid = message.chat.id
@@ -84,21 +88,21 @@ def command_help_handeler(message):
             txt += f'/{comm:<18} - {desc}\n'
         bot.send_message(cid , txt)
 
-
+#/Customer_Support
 @bot.message_handler(commands= ['Customer_Support'])
 def Customer_Support_handler(message):
     cid = message.chat.id
     ch_id = -1002395026478
     bot.copy_message(cid , ch_id , message_id_channel['support'])
 
-
+#/Technical_Support
 @bot.message_handler(commands= ['Technical_Support'])
 def Customer_Support_handler(message):
     cid = message.chat.id
     ch_id = -1002395026478
     bot.copy_message(cid , ch_id , message_id_channel['support_bug'])
 
-
+#/add_fly
 @bot.message_handler(commands=['add_fly'])
 def admin_add_fly_handler(message):
     cid = message.chat.id
@@ -118,6 +122,7 @@ def admin_step_add_handler(message):
     user_step[cid] = 0
     log.critical('Adding flies ...')
 
+#/delete_fly
 @bot.message_handler(commands=['delete_fly'])
 def delete_fly_handler(message):
     cid = message.chat.id
@@ -135,7 +140,7 @@ def add_fly_handler(message):
     bot.send_message(cid , 'با موفقیت حذف شد !')
     log.critical('Deleting flies ...')
 
-
+#for looking your acount
 @bot.message_handler(commands= ['acount'])
 def watch_acount_handler(message):
     cid = message.chat.id
@@ -147,7 +152,7 @@ def watch_acount_handler(message):
     else :
         bot.send_message(cid , 'شما اکانتی ندارید لطفا اول اکانت بسازید ! /login برای ساخت اکانت .')
 
-
+#for deleting acount
 @bot.message_handler(commands= ['delete_acount'])
 def delete_acount_handler(message):
     cid = message.chat.id
@@ -161,7 +166,7 @@ def delete_acount_handler(message):
         log.critical('Deleteing acount ...')
 
 
-
+#for loging in
 @bot.message_handler(commands= ['login'])
 def login_customer(message):
     cid = message.chat.id
@@ -190,7 +195,7 @@ def login_customer_handler(message):
         log.critical('Logining ...')
    
 
-
+#for ticket
 @bot.message_handler(commands=['buy'])                       
 def button_flight_handler(message):
     cid = message.chat.id
@@ -198,7 +203,7 @@ def button_flight_handler(message):
     markup.add('پرواز ✈')
     bot.send_message(cid, 'انتخاب کنید :', reply_markup = markup)
 
-
+#/edit_fly for editing flies
 @bot.message_handler(commands=['edit_fly'])
 def edit_fly_handler(message):
     cid = message.chat.id
